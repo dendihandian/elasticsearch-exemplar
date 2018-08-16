@@ -11,9 +11,11 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/dotenv": "^1.1.1",
+    "js-cookie": "^2.2.0",
     "nuxt": "^1.0.0",
-    "vuetify": "^1.0.19",
-    "@nuxtjs/axios": "^5.0.0"
+    "vuetify": "^1.0.19"
   },
   "devDependencies": {
     "cross-env": "^5.0.1",
