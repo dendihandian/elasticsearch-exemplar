@@ -3,12 +3,18 @@
     <v-toolbar-side-icon @click="drawerToggle" class="white--text"></v-toolbar-side-icon>
     <v-toolbar-title v-text="title" class="white--text"></v-toolbar-title>
     <v-spacer></v-spacer>
-    <router-link to="/auth/login">
+    <router-link to="/auth/login" v-if="!isAuthenticated">
       <v-btn flat class="white--text">Login</v-btn>
     </router-link>
-    <router-link to="/auth/register">
+    <router-link to="/auth/register" v-if="!isAuthenticated">
       <v-btn flat class="white--text">Register</v-btn>
     </router-link>
+    <v-btn flat v-if="isAuthenticated" class="white--text">
+      <v-icon>person</v-icon> &nbsp; {{ user.username }}
+    </v-btn>
+    <v-btn flat v-if="isAuthenticated" class="white--text">
+      <v-icon>exit_to_app</v-icon> &nbsp; Logout
+    </v-btn>
   </v-toolbar>
 </template>
 
@@ -24,6 +30,12 @@
     computed: {
       drawer () {
         return this.$store.getters.drawer
+      },
+      isAuthenticated () {
+        return this.$store.getters.isAuthenticated
+      },
+      user () {
+        return this.$store.getters.authenticatedUser
       }
     },
     methods: {
