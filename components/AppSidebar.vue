@@ -5,6 +5,7 @@
     v-model="drawer"
     fixed
     app
+    dark
   >
     <v-list>
       <v-list-tile
@@ -13,6 +14,7 @@
         :key="i"
         v-for="(item, i) in items"
         exact
+        active-class="cyan--text"
       >
         <v-list-tile-action>
           <v-icon v-html="item.icon"></v-icon>
@@ -31,8 +33,9 @@
       return {
         clipped: false,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'apps', title: 'Home', to: '/' },
+          { icon: 'bubble_chart', title: 'Products', to: '/products' },
+          { icon: 'contacts', title: 'Contacts', to: '/contacts' }
         ],
         miniVariant: false,
       }

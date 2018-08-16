@@ -1,8 +1,14 @@
 <template lang="html">
-  <v-toolbar fixed app :clipped-left="clipped">
-    <v-toolbar-side-icon @click="drawerToggle"></v-toolbar-side-icon>
-    <v-toolbar-title v-text="title"></v-toolbar-title>
+  <v-toolbar fixed app :clipped-left="clipped" class="cyan darken-3">
+    <v-toolbar-side-icon @click="drawerToggle" class="white--text"></v-toolbar-side-icon>
+    <v-toolbar-title v-text="title" class="white--text"></v-toolbar-title>
     <v-spacer></v-spacer>
+    <router-link to="/auth/login">
+      <v-btn flat class="white--text">Login</v-btn>
+    </router-link>
+    <router-link to="/auth/register">
+      <v-btn flat class="white--text">Register</v-btn>
+    </router-link>
   </v-toolbar>
 </template>
 
@@ -12,7 +18,7 @@
       return {
         clipped: false,
         fixed: false,
-        title: 'Vuetify.js'
+        title: 'ElasticExemplar'
       }
     },
     computed: {
