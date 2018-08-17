@@ -5,7 +5,8 @@ const createStore = () => {
     state: {
       drawer: false,
       token: null,
-      user: null
+      user: null,
+      snackbar: null
     },
     mutations: {
       drawerToggle (state) {
@@ -17,16 +18,25 @@ const createStore = () => {
       setUser (state, authenticatedUser) {
         state.user = authenticatedUser
       },
+      setSnackbar (state, snackbarData) {
+        state.snackbar = snackbarData
+      },
       clearToken (state) {
         state.token = null
       },
       clearUser (state) {
         state.user = null
+      },
+      clearAlert (state) {
+        state.snackbar = null
       }
     },
     actions: {
       drawerToggle (vuexContext) {
         vuexContext.commit('drawerToggle')
+      },
+      setSnackbar (vuexContext, snackbarData) {
+        vuexContext.commit('setSnackbar', snackbarData)
       },
       authentication (vuexContext, authData) {
         return this.$axios.$post('/auth/login', {
@@ -63,6 +73,9 @@ const createStore = () => {
       },
       authenticatedUser (state) {
         return state.user
+      },
+      snackbar (state) {
+        return state.snackbar
       }
     }
   })
