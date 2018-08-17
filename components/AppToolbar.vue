@@ -12,7 +12,7 @@
     <v-btn flat v-if="isAuthenticated" class="white--text">
       <v-icon>person</v-icon> &nbsp; {{ user.username }}
     </v-btn>
-    <v-btn flat v-if="isAuthenticated" class="white--text">
+    <v-btn flat v-if="isAuthenticated" class="white--text" @click="logout">
       <v-icon>exit_to_app</v-icon> &nbsp; Logout
     </v-btn>
   </v-toolbar>
@@ -28,9 +28,6 @@
       }
     },
     computed: {
-      drawer () {
-        return this.$store.getters.drawer
-      },
       isAuthenticated () {
         return this.$store.getters.isAuthenticated
       },
@@ -41,6 +38,9 @@
     methods: {
       drawerToggle () {
         this.$store.dispatch('drawerToggle')
+      },
+      logout () {
+        this.$store.dispatch('logout')
       }
     }
   }

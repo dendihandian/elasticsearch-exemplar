@@ -19,6 +19,9 @@ const createStore = () => {
       },
       clearToken (state) {
         state.token = null
+      },
+      clearUser (state) {
+        state.user = null
       }
     },
     actions: {
@@ -39,6 +42,16 @@ const createStore = () => {
           localStorage.setItem("tokenExpiration", Number.parseInt(result.data.tokenExpiration) * 1000)
         })
         .catch(e => console.log(e))
+      },
+      logout (vuexContext) {
+        // state
+        vuexContext.commit('clearToken')
+        vuexContext.commit('clearUser')
+        // localStorage
+        if (process.client) {
+          localStorage.removeItem('token')
+          localStorage.removeItem('tokenExpiration')
+        }
       }
     },
     getters: {

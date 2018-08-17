@@ -2,7 +2,7 @@
   <v-navigation-drawer
     :mini-variant="miniVariant"
     :clipped="clipped"
-    v-model="drawer"
+    :value="drawer"
     fixed
     app
     dark
