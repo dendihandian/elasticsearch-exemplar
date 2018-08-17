@@ -1,6 +1,6 @@
 <template lang="html">
   <v-snackbar
-    v-model="snackbar"
+    :value="snackbar"
     bottom
     right
     :timeout="timeout"
