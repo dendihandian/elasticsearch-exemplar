@@ -53,13 +53,18 @@
       }
     },
     methods: {
-      submit () {
-        this.$store.dispatch('authentication', {
-          email: this.email,
-          password: this.password
-        }).then(() => {
+      async submit () {
+        try {
+          await this.$auth.loginWith('local', {
+            data: {
+              email: this.email,
+              password: this.password
+            }
+          })
           this.$router.push('/')
-        })
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }

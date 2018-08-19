@@ -31,6 +31,14 @@ const createStore = () => {
       },
       snackbar (state) {
         return state.snackbar
+      },
+
+      // Getters For Auth Module
+      isAuthenticated (state) {
+        return state.auth.loggedIn
+      },
+      loggedInUser (state) {
+        return state.auth.user
       }
     }
   })

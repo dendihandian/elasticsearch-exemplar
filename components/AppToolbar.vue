@@ -10,7 +10,7 @@
       <v-btn flat class="white--text">Register</v-btn>
     </router-link>
     <v-btn flat v-if="isAuthenticated" class="white--text">
-      <v-icon>person</v-icon> &nbsp; {{ user.username }}
+      <v-icon>person</v-icon> &nbsp; {{ loggedInUser.username }}
     </v-btn>
     <v-btn flat v-if="isAuthenticated" class="white--text" @click="logout">
       <v-icon>exit_to_app</v-icon> &nbsp; Logout
@@ -31,16 +31,16 @@
       isAuthenticated () {
         return this.$store.getters.isAuthenticated
       },
-      user () {
-        return this.$store.getters.authenticatedUser
+      loggedInUser () {
+        return this.$store.getters.loggedInUser
       }
     },
     methods: {
       drawerToggle () {
         this.$store.dispatch('drawerToggle')
       },
-      logout () {
-        this.$store.dispatch('logout')
+      async logout () {
+        await this.$auth.logout();
       }
     }
   }
