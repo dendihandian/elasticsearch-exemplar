@@ -46,8 +46,10 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/dotenv',
   ],
+
   /*
   ** Axios module configuration
   */
@@ -55,6 +57,21 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
     baseURL: process.env.BASE_API_URL || 'http://localhost:3000/api',
     credentials: false
+  },
+
+  /*
+  ** Auth module configuration
+  */
+  auth: {
+    strategies: {
+      local: {
+        endpoints : {
+          login: { url: '/auth/login', method: 'post', propertyName: 'data.token' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get', propertyName: 'data.user' }
+        }
+      }
+    }
   },
 
   /*
