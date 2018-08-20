@@ -82,6 +82,11 @@ export default {
           },
         })
 
+        this.$store.dispatch('setSnack', {
+          message: 'Register and Login Succesful',
+          color: 'green'
+        })
+
         this.$router.push('/')
       } catch (e) {
         this.error = e.response.data.message
