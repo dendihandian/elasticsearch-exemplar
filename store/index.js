@@ -4,7 +4,8 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       drawer: false,
-      snack: null
+      snack: null,
+      products: []
     },
     mutations: {
       drawerToggle (state) {
@@ -15,6 +16,9 @@ const createStore = () => {
       },
       clearSnack (state) {
         state.snack = null
+      },
+      setProducts (state, products) {
+        state.products = products
       }
     },
     actions: {
@@ -26,6 +30,9 @@ const createStore = () => {
       },
       clearSnack (vuexContext) {
         vuexContext.commit('clearSnack')
+      },
+      setProducts (vuexContext, products) {
+        vuexContext.commit('setProducts', products)
       }
     },
     getters: {
@@ -34,6 +41,9 @@ const createStore = () => {
       },
       snack (state) {
         return state.snack
+      },
+      products (state) {
+        return state.products
       },
 
       // Getters For Auth Module
