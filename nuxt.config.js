@@ -63,6 +63,9 @@ module.exports = {
   ** Auth module configuration
   */
   auth: {
+    redirect: {
+      login: '/auth/login'
+    },
     strategies: {
       local: {
         endpoints : {
