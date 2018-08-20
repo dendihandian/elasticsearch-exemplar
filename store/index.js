@@ -19,6 +19,9 @@ const createStore = () => {
       },
       setProducts (state, products) {
         state.products = products
+      },
+      clearProducts (state) {
+        state.products = []
       }
     },
     actions: {
@@ -33,6 +36,9 @@ const createStore = () => {
       },
       setProducts (vuexContext, products) {
         vuexContext.commit('setProducts', products)
+      },
+      clearProducts (vuexContext) {
+        vuexContext.commit('clearProducts')
       }
     },
     getters: {

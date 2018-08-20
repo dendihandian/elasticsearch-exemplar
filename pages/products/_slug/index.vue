@@ -19,7 +19,7 @@
           <br>
           <p>{{ product.description }}</p>
           <v-btn class="success white--text">Edit</v-btn>
-          <v-btn class="error white--text">Delete</v-btn>
+          <v-btn class="error white--text" @click="deleteProduct">Delete</v-btn>
         </v-container>
       </v-flex>
     </v-layout>
@@ -50,6 +50,26 @@
           price: '',
           stock: '',
           description: '',
+        }
+      }
+    },
+    methods: {
+      deleteProduct () {
+        if (this.product.id) {
+          this.$axios.$delete('/products/' + this.product.id)
+            .then(result => {
+              this.$store.dispatch('setSnack', {
+                message: result.message,
+                color: 'green'
+              })
+              this.$router.push('/products')
+            })
+            .catch(error => {
+              this.$store.dispatch('setSnack', {
+                message: error.message,
+                color: 'red'
+              })
+            })
         }
       }
     },

@@ -47,6 +47,7 @@ export default {
   created () {
     this.$axios.$get('/products')
       .then(result => {
+        this.$store.dispatch('clearProducts')
         this.$store.dispatch('setProducts', result.data)
       })
       .catch(error => {
