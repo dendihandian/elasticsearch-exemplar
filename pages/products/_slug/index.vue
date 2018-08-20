@@ -1,7 +1,7 @@
 <template lang="html">
   <v-container>
-    <v-layout>
-      <v-flex xs6>
+    <v-layout row wrap>
+      <v-flex xs12 sm6>
         <v-carousel>
           <v-carousel-item
             v-for="(item,i) in items"
@@ -10,7 +10,7 @@
           ></v-carousel-item>
         </v-carousel>
       </v-flex>
-      <v-flex xs6>
+      <v-flex xs12 sm6>
         <v-container>
           <h2>{{ product.name }}</h2>
           <br>
