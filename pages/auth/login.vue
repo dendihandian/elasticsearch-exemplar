@@ -62,6 +62,12 @@
               password: this.password
             }
           })
+
+          this.$store.dispatch('setSnack', {
+            message: 'Login Succesful',
+            color: 'green'
+          })
+
           this.$router.push('/')
         } catch (e) {
           console.log(e)

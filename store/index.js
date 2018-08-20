@@ -4,33 +4,36 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       drawer: false,
-      snackbar: null
+      snack: null
     },
     mutations: {
       drawerToggle (state) {
         state.drawer = !state.drawer
       },
-      setSnackbar (state, snackbarData) {
-        state.snackbar = snackbarData
+      setSnack (state, snack) {
+        state.snack = snack
       },
-      clearSnackbar (state) {
-        state.snackbar = null
+      clearSnack (state) {
+        state.snack = null
       }
     },
     actions: {
       drawerToggle (vuexContext) {
         vuexContext.commit('drawerToggle')
       },
-      setSnackbar (vuexContext, snackbarData) {
-        vuexContext.commit('setSnackbar', snackbarData)
+      setSnack (vuexContext, snack) {
+        vuexContext.commit('setSnack', snack)
+      },
+      clearSnack (vuexContext) {
+        vuexContext.commit('clearSnack')
       }
     },
     getters: {
       drawer (state) {
         return state.drawer
       },
-      snackbar (state) {
-        return state.snackbar
+      snack (state) {
+        return state.snack
       },
 
       // Getters For Auth Module

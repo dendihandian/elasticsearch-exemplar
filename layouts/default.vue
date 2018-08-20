@@ -27,7 +27,7 @@
     },
     computed: {
       snackbar () {
-        return this.$store.getters.snackbar
+        return this.$store.getters.snack
       }
     }
   }

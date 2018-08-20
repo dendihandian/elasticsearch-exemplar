@@ -41,6 +41,11 @@
       },
       async logout () {
         await this.$auth.logout();
+
+        this.$store.dispatch('setSnack', {
+          message: 'Logout Succesful',
+          color: 'green'
+        })
       }
     }
   }

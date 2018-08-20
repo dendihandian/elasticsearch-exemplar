@@ -4,10 +4,11 @@
     bottom
     right
     :timeout="timeout"
+    :color="snackbar.color"
   >
     {{ snackbar.message }}
     <v-btn
-      color="pink"
+      color="white"
       flat
       @click="clearSnackbar"
     >
@@ -25,12 +26,12 @@
     },
     computed: {
       snackbar () {
-        return this.$store.getters.snackbar
+        return this.$store.getters.snack
       }
     },
     methods: {
       clearSnackbar () {
-        this.$store.dispatch('clearSnackbar')
+        this.$store.dispatch('clearSnack')
       }
     }
   }
