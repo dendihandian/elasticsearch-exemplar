@@ -14,7 +14,7 @@
           xs12 sm6 md4 lg3
           >
           <router-link :to="'/products/' + product.id">
-            <v-card flat tile pa-2>
+            <v-card flat tile style="padding:10px;">
               <v-card-media
                 :src="`https://unsplash.it/150/300?image=${Math.floor(Math.random() * 100) + 1}`"
                 height="150px"
