@@ -1,36 +1,66 @@
 <template lang="html">
-  <form>
-    <v-text-field
-      v-model="name"
-      :error-messages="nameErrors"
-      :counter="254"
-      label="Name"
-      required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
-    ></v-text-field>
-    <v-slider
-      label="Stock"
-      v-model="stock"
-      :max="999"
-      :min="1"
-      :step="1"
-    ></v-slider>
-    <v-slider
-      label="Price"
-      v-model="price"
-      :max="999999"
-      :min="1"
-      :step="1"
-    ></v-slider>
-    <v-textarea
-      v-model="description"
-      label="Description"
-      hint="Minimum 5 characters"
-    ></v-textarea>
-    <v-btn @click="submit" color="success">Create</v-btn>
-    <v-btn @click="clear" color="warning">clear</v-btn>
-  </form>
+  <v-container>
+    <form @submit.prevent="submitProduct">
+      <v-layout row wrap>
+        <v-flex xs12>
+          <v-text-field
+          v-model="name"
+          :error-messages="nameErrors"
+          :counter="254"
+          label="Name"
+          required
+          @input="$v.name.$touch()"
+          @blur="$v.name.$touch()"
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs9 mt-4>
+          <v-slider
+            label="Stock"
+            v-model="stock"
+            :max="999"
+            :min="1"
+            :step="1"
+          ></v-slider>
+        </v-flex>
+        <v-flex xs2 offset-xs1>
+          <v-text-field
+            v-model="stock"
+            type="number"
+            max="999"
+            min="1"
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs9 mt-4>
+          <v-slider
+            label="Price"
+            v-model="price"
+            :max="999"
+            :min="1"
+            :step="1"
+          ></v-slider>
+        </v-flex>
+        <v-flex xs2 offset-xs1>
+          <v-text-field
+            v-model="price"
+            max="999"
+            min="1"
+            type="number"
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs12>
+          <v-textarea
+          v-model="description"
+          label="Description"
+          hint="Minimum 5 characters"
+          ></v-textarea>
+        </v-flex>
+        <v-flex xs12>
+          <v-btn type="submit" color="success">Create</v-btn>
+          <v-btn @click="clearProductForm" color="warning">clear</v-btn>
+        </v-flex>
+      </v-layout>
+    </form>
+  </v-container>
 </template>
 
 <script>
@@ -64,13 +94,34 @@
     },
 
     methods: {
-      submit () {
+      submitProduct () {
         this.$v.$touch()
+        this.$axios.$post('/products', {
+          name: this.name,
+          stock: this.stock,
+          price: this.price,
+          description: this.description
+        })
+        .then(result => {
+          this.$store.dispatch('setSnack', {
+            message: result.message,
+            color: 'green'
+          })
+          this.$router.push('/products')
+        })
+        .catch(error => {
+          this.$store.dispatch('setSnack', {
+            message: error.message,
+            color: 'red'
+          })
+        })
       },
-      clear () {
+      clearProductForm () {
         this.$v.$reset()
         this.name = ''
         this.description = ''
+        this.stock = 1
+        this.price = 1
       }
     }
   }
