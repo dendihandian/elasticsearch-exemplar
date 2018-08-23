@@ -18,7 +18,9 @@
           <h4>Stock: {{ product.stock }}</h4>
           <br>
           <p>{{ product.description }}</p>
-          <v-btn class="success white--text">Edit</v-btn>
+          <router-link :to="'/products/' + product.id + '/edit'" >
+            <v-btn class="success white--text">Edit</v-btn>
+          </router-link>
           <v-btn class="error white--text" @click="deleteProduct">Delete</v-btn>
         </v-container>
       </v-flex>
