@@ -54,24 +54,26 @@
       }
     },
     methods: {
-      async submit () {
-        try {
-          await this.$auth.loginWith('local', {
-            data: {
-              email: this.email,
-              password: this.password
-            }
-          })
-
+      submit () {
+        this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password
+          }
+        })
+        .then(result => {
           this.$store.dispatch('setSnack', {
             message: 'Login Succesful',
             color: 'green'
           })
-
           this.$router.push('/')
-        } catch (e) {
-          console.log(e)
-        }
+        })
+        .catch(error => {
+          this.$store.dispatch('setSnack', {
+            message: error.message,
+            color: 'red'
+          })
+        })
       }
     }
   }
