@@ -1,13 +1,13 @@
 <template lang="html">
   <v-container>
     <v-layout row wrap>
-      <v-flex flat xs11>
+      <v-flex flat xs12 sm12 md10 lg10>
         <v-text-field
           v-model="query"
           required
         ></v-text-field>
       </v-flex>
-      <v-flex flat xs1>
+      <v-flex flat xs12 sm12 md1 offset-md1 lg1 offset-lg1>
         <v-btn color="success" @click="searchProduct">Search</v-btn>
       </v-flex>
     </v-layout>
