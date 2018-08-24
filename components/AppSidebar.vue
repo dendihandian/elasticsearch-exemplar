@@ -36,6 +36,7 @@
           { icon: 'apps', title: 'Home', to: '/' },
           { icon: 'bubble_chart', title: 'Products', to: '/products' },
           { icon: 'add', title: 'Product Create', to: '/products/create' },
+          { icon: 'search', title: 'Product Search', to: '/products/search' },
           { icon: 'contacts', title: 'Contacts', to: '/contacts' }
         ],
         miniVariant: false,
