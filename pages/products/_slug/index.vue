@@ -21,10 +21,38 @@
           <router-link :to="'/products/' + product.id + '/edit'" >
             <v-btn class="success white--text">Edit</v-btn>
           </router-link>
-          <v-btn class="error white--text" @click="deleteProduct">Delete</v-btn>
+          <v-btn class="error white--text" @click="dialog = true">Delete</v-btn>
         </v-container>
       </v-flex>
     </v-layout>
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Deletion Confirmation</v-card-title>
+        <v-card-text>
+          Are you sure want to delete this product?
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="dialog = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="deleteProduct"
+          >
+            Delete
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -32,6 +60,7 @@
   export default {
     data () {
       return {
+        dialog: false,
         items: [
           {
             src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
@@ -57,6 +86,7 @@
     },
     methods: {
       deleteProduct () {
+        this.dialog = false
         if (this.product.id) {
           this.$axios.$delete('/products/' + this.product.id)
             .then(result => {
