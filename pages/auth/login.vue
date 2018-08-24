@@ -70,7 +70,7 @@
         })
         .catch(error => {
           this.$store.dispatch('setSnack', {
-            message: error.message,
+            message: error.response.data.message,
             color: 'red'
           })
         })
